@@ -1,0 +1,83 @@
+{
+  "group_chat_id": null,
+  "admin_ids": [],
+  "deadline": {
+    "day": "Monday",
+    "time": "17:00",
+    "timezone": "Asia/Tokyo"
+  },
+  "reminders": [
+    {
+      "day": "mon",
+      "time": "09:00",
+      "message": "📋 *Weekly Report Reminder*\n\nHalo tim, jangan lupa untuk mengumpulkan Weekly Report hari ini ya.\n\nDeadline: *Senin jam 17:00 JST*\n\nYang belum upload mohon segera upload ke grup ini atau share link SharePoint-nya. Terima kasih! 🙏"
+    },
+    {
+      "day": "mon",
+      "time": "16:00",
+      "message": "⏰ *Deadline 1 Jam Lagi*\n\nReminder untuk tim yang belum upload Weekly Report.\n\nDeadline tinggal *1 jam lagi* (jam 17:00 JST).\n\nMohon segera upload ya!"
+    },
+    {
+      "day": "mon",
+      "time": "17:00",
+      "message": "⚠️ *Deadline Sudah Lewat*\n\nBerikut adalah daftar tim yang *belum mengumpulkan* Weekly Report minggu ini:"
+    },
+    {
+      "day": "tue",
+      "time": "09:00",
+      "message": "🚨 *Final Reminder*\n\nMasih ada tim yang belum upload Weekly Report kemarin.\n\nMohon segera upload ya, terima kasih."
+    }
+  ],
+  "teams": [
+    {
+      "id": "ss_osp_prov",
+      "name": "OSP Provisioning",
+      "division": "Service Solutions (SS)"
+    },
+    {
+      "id": "ss_osp_assu",
+      "name": "OSP Assurance",
+      "division": "Service Solutions (SS)"
+    },
+    {
+      "id": "ss_core_net",
+      "name": "Core Network",
+      "division": "Service Solutions (SS)"
+    },
+    {
+      "id": "ss_backbone",
+      "name": "Backbone & Infrastructure",
+      "division": "Service Solutions (SS)"
+    },
+    {
+      "id": "ss_ticket",
+      "name": "Ticket & Gangguan",
+      "division": "Service Solutions (SS)"
+    },
+    {
+      "id": "it_infra",
+      "name": "IT Infrastructure",
+      "division": "Information Technology (IT)"
+    },
+    {
+      "id": "it_vas_bss",
+      "name": "IT VAS & BSS",
+      "division": "Information Technology (IT)"
+    },
+    {
+      "id": "it_app",
+      "name": "IT Application",
+      "division": "Information Technology (IT)"
+    },
+    {
+      "id": "it_datacom",
+      "name": "Datacom (IP Transit, Payload, DIA & VPN)",
+      "division": "Information Technology (IT)"
+    },
+    {
+      "id": "it_fo",
+      "name": "Transport – Fiber Optic (FO)",
+      "division": "Information Technology (IT)"
+    }
+  ]
+}
