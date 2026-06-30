@@ -1,4 +1,4 @@
-const { bot } = require('../../../../lib/bot');
+const { bot } = require('../../../lib/bot');
 
 export const dynamic = 'force-dynamic';
 
