@@ -1,7 +1,7 @@
-const { bot } = require('../../../../lib/bot');
-const { getGroupId, getConfig } = require('../../../../lib/config');
-const { ensureWeekInitialized } = require('../../../../lib/store');
-const { formatLateList } = require('../../../../lib/utils');
+const { bot } = require('../../../lib/bot');
+const { getGroupId, getConfig } = require('../../../lib/config');
+const { ensureWeekInitialized } = require('../../../lib/store');
+const { formatLateList } = require('../../../lib/utils');
 
 export const dynamic = 'force-dynamic';
 
