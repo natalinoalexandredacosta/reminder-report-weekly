@@ -1,6 +1,6 @@
 import { bot } from '../../../../lib/bot.js';
-import { getGroupId, getConfig } from '../../../../lib/config.js';
-import { ensureWeekInitialized } from '../../../../lib/store.js';
+import { getConfig } from '../../../../lib/config.js';
+import { ensureWeekInitialized, getGroupId } from '../../../../lib/store.js';
 import { formatLateList } from '../../../../lib/utils.js';
 
 export const dynamic = 'force-dynamic';
@@ -13,7 +13,7 @@ export async function GET(req) {
   // if (searchParams.get('secret') !== process.env.CRON_SECRET) return new Response('Unauthorized', { status: 401 });
 
   try {
-    const groupId = getGroupId();
+    const groupId = await getGroupId();
     if (!groupId) {
       console.warn('No group_chat_id configured. Skipping scheduled reminder.');
       return new Response('No group configured', { status: 200 });
