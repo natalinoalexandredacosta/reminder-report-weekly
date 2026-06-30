@@ -1,4 +1,4 @@
-const { getKv } = require('../../../lib/store');
+import { getKv } from '../../../lib/store';
 
 export const dynamic = 'force-dynamic';
 

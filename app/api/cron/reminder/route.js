@@ -1,7 +1,7 @@
-const { bot } = require('../../../../lib/bot');
-const { getGroupId, getConfig } = require('../../../../lib/config');
-const { ensureWeekInitialized } = require('../../../../lib/store');
-const { formatLateList } = require('../../../../lib/utils');
+import { bot } from '../../../../lib/bot.js';
+import { getGroupId, getConfig } from '../../../../lib/config.js';
+import { ensureWeekInitialized } from '../../../../lib/store.js';
+import { formatLateList } from '../../../../lib/utils.js';
 
 export const dynamic = 'force-dynamic';
 
