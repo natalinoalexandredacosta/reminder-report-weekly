@@ -1,13 +1,24 @@
-const { kv } = require('../../../lib/store');
+const { getKv } = require('../../../lib/store');
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
+    const kv = getKv();
+
+    const envDebug = {
+      KV_REST_API_URL: process.env.KV_REST_API_URL || null,
+      KV_URL_KV_REST_API_URL: process.env.KV_URL_KV_REST_API_URL || null,
+      KV_URL: process.env.KV_URL || null,
+      tokenFromKV_REST_API_TOKEN: !!process.env.KV_REST_API_TOKEN,
+      tokenFromKV_URL_KV_REST_API_TOKEN: !!process.env.KV_URL_KV_REST_API_TOKEN,
+    };
+
     if (!kv) {
       return Response.json({
         connected: false,
         error: 'KV client not initialized. Check KV_REST_API_URL and KV_REST_API_TOKEN env vars.',
+        env: envDebug,
       }, { status: 500 });
     }
 
@@ -23,10 +34,7 @@ export async function GET() {
       ping: 'pong',
       write: testValue,
       read: result,
-      env: {
-        url: process.env.KV_REST_API_URL || process.env.KV_URL || null,
-        tokenExists: !!process.env.KV_REST_API_TOKEN,
-      },
+      env: envDebug,
     });
   } catch (err) {
     return Response.json({
