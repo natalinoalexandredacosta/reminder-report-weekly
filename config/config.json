@@ -10,22 +10,22 @@
     {
       "day": "mon",
       "time": "09:00",
-      "message": "📋 *Weekly Report Reminder*\n\nHalo tim, jangan lupa untuk mengumpulkan Weekly Report hari ini ya.\n\nDeadline: *Senin jam 17:00 JST*\n\nYang belum upload mohon segera upload ke grup ini atau share link SharePoint-nya. Terima kasih! 🙏"
+      "message": "📋 *Weekly Report Reminder*\n\nHalo tim, jangan lupa untuk mengumpulkan Weekly Report hari ini ya.\n\nDeadline: *Senin jam 17:00 OTL*\n\nYang belum upload mohon segera upload ke grup ini atau share link SharePoint-nya. Terima kasih! 🙏 \n\n cc: Maun @Andrektrepe , Mana @Joaninha_Piedade"
     },
     {
       "day": "mon",
       "time": "16:00",
-      "message": "⏰ *Deadline 1 Jam Lagi*\n\nReminder untuk tim yang belum upload Weekly Report.\n\nDeadline tinggal *1 jam lagi* (jam 17:00 JST).\n\nMohon segera upload ya!"
+      "message": "⏰ *Deadline 1 Jam Lagi*\n\nReminder untuk tim yang belum upload Weekly Report.\n\nDeadline tinggal *1 jam lagi* (jam 17:00 OTL).\n\nMohon segera upload ya! \n\n cc: Maun @Andrektrepe , Mana @Joaninha_Piedade"
     },
     {
       "day": "mon",
       "time": "17:00",
-      "message": "⚠️ *Deadline Sudah Lewat*\n\nBerikut adalah daftar tim yang *belum mengumpulkan* Weekly Report minggu ini:"
+      "message": "⚠️ *Deadline Sudah Lewat*\n\nBerikut adalah daftar tim yang *belum mengumpulkan* Weekly Report minggu ini: \n\n cc: Maun @Andrektrepe , Mana @Joaninha_Piedade"
     },
     {
       "day": "tue",
       "time": "09:00",
-      "message": "🚨 *Final Reminder*\n\nMasih ada tim yang belum upload Weekly Report kemarin.\n\nMohon segera upload ya, terima kasih."
+      "message": "🚨 *Final Reminder*\n\nMasih ada tim yang belum upload Weekly Report kemarin.\n\nMohon segera upload ya, terima kasih. \n\n cc: Maun @Andrektrepe , Mana @Joaninha_Piedade"
     }
   ],
   "teams": [
