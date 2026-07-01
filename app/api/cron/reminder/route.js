@@ -22,12 +22,13 @@ export async function GET(req) {
     // Auto reset mingguan (dipanggil setiap Senin via cron)
     await ensureWeekInitialized();
 
-    const now = new Date();
-    const nowStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+    // Gunakan waktu JST (UTC+9) karena server berjalan di UTC
+    const nowJst = new Date(Date.now() + 9 * 60 * 60 * 1000);
+    const nowStr = `${nowJst.getUTCFullYear()}-${String(nowJst.getUTCMonth() + 1).padStart(2, '0')}-${String(nowJst.getUTCDate()).padStart(2, '0')} ${String(nowJst.getUTCHours()).padStart(2, '0')}:${String(nowJst.getUTCMinutes()).padStart(2, '0')}`;
 
     // Untuk cron spesifik per-jam, Anda bisa buat parameter ?time=09:00
     const { searchParams } = new URL(req.url);
-    const timeParam = searchParams.get('time') || `${String(now.getHours()).padStart(2, '0')}:00`;
+    const timeParam = searchParams.get('time') || `${String(nowJst.getUTCHours()).padStart(2, '0')}:00`;
 
     const config = getConfig();
     const reminders = config.reminders || [];
