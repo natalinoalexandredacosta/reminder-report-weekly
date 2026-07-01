@@ -126,11 +126,22 @@ Alternatif gratis dengan **cron-job.org**:
 | `/start` `/help` | Menampilkan daftar command | Public |
 | `/status` | Lihat status upload semua tim | Public |
 | `/late` | Lihat tim yang belum upload | Public |
-| `/uploaded <nama>` | Tandai tim sudah upload | Admin |
-| `/not_uploaded <nama>` | Tandai tim belum upload | Admin |
+| `/uploaded <nama>` | Tandai 1 atau lebih tim sudah upload (pisah koma) | Admin |
+| `/not_uploaded <nama>` | Tandai 1 atau lebih tim belum upload (pisah koma) | Admin |
 | `/reset` | Reset status minggu ini | Admin |
 | `/remind_now` | Kirim reminder manual | Admin |
 | `/setgroup` | Set grup target | Admin |
+
+### Contoh Penggunaan Multiple Tim
+
+```
+/uploaded OSP Provisioning, IT Application, Network
+/not_uploaded OSP Provisioning, IT Application
+```
+
+Bot akan memproses setiap nama dan menampilkan ringkasan:
+- ✅ Tim yang berhasil ditandai
+- ❌ Nama yang tidak ditemukan (jika ada)
 
 ---
 
