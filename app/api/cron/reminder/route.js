@@ -23,11 +23,11 @@ export async function GET(req) {
     await ensureWeekInitialized();
 
     const now = new Date();
-    const nowStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+    const nowStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
     // Untuk cron spesifik per-jam, Anda bisa buat parameter ?time=09:00
     const { searchParams } = new URL(req.url);
-    const timeParam = searchParams.get('time') || `${String(now.getHours()).padStart(2,'0')}:00`;
+    const timeParam = searchParams.get('time') || `${String(now.getHours()).padStart(2, '0')}:00`;
 
     const config = getConfig();
     const reminders = config.reminders || [];
@@ -44,7 +44,7 @@ export async function GET(req) {
       }
     }
 
-    const fullMsg = `${baseMsg}\n\n_📅 ${nowStr} JST_`;
+    const fullMsg = `${baseMsg}\n\n_📅 ${nowStr} OTL_`;
 
     await bot.telegram.sendMessage(groupId, fullMsg, { parse_mode: 'Markdown' });
     console.log(`Sent scheduled reminder to ${groupId} at ${timeParam}`);
