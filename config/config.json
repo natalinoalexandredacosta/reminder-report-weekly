@@ -60,8 +60,13 @@
       "division": "Information Technology (IT)"
     },
     {
-      "id": "it_vas_bss",
-      "name": "IT VAS & BSS",
+      "id": "it_vas",
+      "name": "IT VAS",
+      "division": "Information Technology (IT)"
+    },
+    {
+      "id": "it_bss",
+      "name": "IT BSS",
       "division": "Information Technology (IT)"
     },
     {
