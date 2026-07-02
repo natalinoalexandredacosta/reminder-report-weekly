@@ -75,6 +75,11 @@
       "division": "Information Technology (IT)"
     },
     {
+      "id": "it_datacom_prov",
+      "name": "Datacom Network Provisioning",
+      "division": "Information Technology (IT)"
+    },
+    {
       "id": "it_fo",
       "name": "Transport – Fiber Optic (FO)",
       "division": "Information Technology (IT)"
