@@ -1,7 +1,6 @@
 import { bot } from '../../../lib/bot.js';
 import { getConfig } from '../../../lib/config.js';
 import { getGroupId } from '../../../lib/store.js';
-import { CC_MENTION } from '../../../lib/utils.js';
 import { createRequire } from 'module';
 
 export const dynamic = 'force-dynamic';
@@ -10,30 +9,37 @@ export const dynamic = 'force-dynamic';
 const require = createRequire(import.meta.url);
 const quoteAPI = require('quote-indo');
 
+// Escape karakter khusus HTML agar tidak merusak parse_mode: 'HTML'
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
 export async function GET(req) {
   try {
     // Ambil quote kehidupan dari quote-indo
-    let quoteText = null;
+    let quoteText = 'Kerja keras hari ini adalah investasi terbaik untuk masa depan yang lebih baik.';
     try {
       const quote = quoteAPI.Quotes('kehidupan');
-      quoteText = quote;
+      if (quote) quoteText = quote;
     } catch (qErr) {
       console.warn('Gagal ambil quote:', qErr.message);
-      quoteText = 'Kerja keras hari ini adalah investasi terbaik untuk masa depan yang lebih baik.';
     }
 
     const config = getConfig();
     const teams = config.teams || [];
 
-    // Susun daftar semua tim
+    // Susun daftar semua tim (HTML format)
     const teamLines = [];
     let currentDiv = null;
     for (const t of teams) {
       if (t.division !== currentDiv) {
-        teamLines.push(`\n*${t.division}*`);
+        teamLines.push(`\n<b>${escapeHtml(t.division)}</b>`);
         currentDiv = t.division;
       }
-      teamLines.push(`🙏 ${t.name}`);
+      teamLines.push(`🙏 ${escapeHtml(t.name)}`);
     }
 
     // Waktu JST (UTC+9)
@@ -41,16 +47,16 @@ export async function GET(req) {
     const dateStr = `${String(nowJst.getUTCDate()).padStart(2, '0')}/${String(nowJst.getUTCMonth() + 1).padStart(2, '0')}/${nowJst.getUTCFullYear()}`;
 
     const message =
-      `🌟 *Terima Kasih, Tim Terbaik Kami!* 🌟\n` +
-      `_${dateStr} OTL_\n\n` +
+      `🌟 <b>Terima Kasih, Tim Terbaik Kami!</b> 🌟\n` +
+      `<i>${dateStr} OTL</i>\n\n` +
       `Terima kasih yang sebesar-besarnya kepada seluruh tim yang telah bekerja keras dan berdedikasi. ` +
       `Kontribusi kalian sangat berarti bagi kemajuan kita bersama! 🚀\n` +
       teamLines.join('\n') +
-      `\n\n💬 *Kata-kata Hari Ini:*\n` +
-      `_"${quoteText}"_\n\n` +
+      `\n\n💬 <b>Kata-kata Hari Ini:</b>\n` +
+      `<i>"${escapeHtml(quoteText)}"</i>\n\n` +
       `Terus semangat dan tetap kompak! 💪✨\n\n` +
-      `*Telkomcel Bisa, Bisa, Bisa!* 🔥\n\n` +
-      `${CC_MENTION}`;
+      `<b>Telkomcel Bisa, Bisa, Bisa!</b> 🔥\n\n` +
+      `cc: Maun @Andrektrepe , Mana @Joaninha_Piedade`;
 
     // Cek apakah ada ?send=true untuk kirim ke Telegram
     const { searchParams } = new URL(req.url);
@@ -65,7 +71,7 @@ export async function GET(req) {
           preview: message,
         }, { status: 200 });
       }
-      await bot.telegram.sendMessage(groupId, message, { parse_mode: 'Markdown' });
+      await bot.telegram.sendMessage(groupId, message, { parse_mode: 'HTML' });
       console.log(`Terima kasih sent to group ${groupId}`);
       return Response.json({
         success: true,
