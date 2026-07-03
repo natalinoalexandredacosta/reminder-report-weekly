@@ -1,6 +1,7 @@
 import { bot } from '../../../lib/bot.js';
 import { getConfig } from '../../../lib/config.js';
 import { getGroupId } from '../../../lib/store.js';
+import { CC_MENTION } from '../../../lib/utils.js';
 import { createRequire } from 'module';
 
 export const dynamic = 'force-dynamic';
@@ -48,7 +49,8 @@ export async function GET(req) {
       `\n\n💬 *Kata-kata Hari Ini:*\n` +
       `_"${quoteText}"_\n\n` +
       `Terus semangat dan tetap kompak! 💪✨\n\n` +
-      `*Telkomcel Bisa, Bisa, Bisa!* 🔥`;
+      `*Telkomcel Bisa, Bisa, Bisa!* 🔥\n\n` +
+      `${CC_MENTION}`;
 
     // Cek apakah ada ?send=true untuk kirim ke Telegram
     const { searchParams } = new URL(req.url);
