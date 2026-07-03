@@ -5,9 +5,10 @@ import { createRequire } from 'module';
 
 export const dynamic = 'force-dynamic';
 
-// Pakai createRequire karena quote-indo adalah CommonJS package
+// Import quotes dari file lokal (di-push ke git, bisa diedit bebas)
 const require = createRequire(import.meta.url);
-const quoteAPI = require('quote-indo');
+const quotesData = require('../../../data/quotes.json');
+const kehidupanQuotes = quotesData.kehidupanQuotes;
 
 // Escape karakter khusus HTML agar tidak merusak parse_mode: 'HTML'
 function escapeHtml(text) {
@@ -19,14 +20,8 @@ function escapeHtml(text) {
 
 export async function GET(req) {
   try {
-    // Ambil quote kehidupan dari quote-indo
-    let quoteText = 'Kerja keras hari ini adalah investasi terbaik untuk masa depan yang lebih baik.';
-    try {
-      const quote = quoteAPI.Quotes('kehidupan');
-      if (quote) quoteText = quote;
-    } catch (qErr) {
-      console.warn('Gagal ambil quote:', qErr.message);
-    }
+    // Ambil 1 quote kehidupan secara random dari data lokal
+    const quoteText = kehidupanQuotes[Math.floor(Math.random() * kehidupanQuotes.length)];
 
     const config = getConfig();
     const teams = config.teams || [];
