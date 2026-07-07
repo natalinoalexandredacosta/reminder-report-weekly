@@ -1,6 +1,6 @@
 import { bot } from '../../../../lib/bot.js';
 import { getConfig } from '../../../../lib/config.js';
-import { ensureWeekInitialized, getGroupId } from '../../../../lib/store.js';
+import { getGroupId } from '../../../../lib/store.js';
 import { formatLateList } from '../../../../lib/utils.js';
 
 export const dynamic = 'force-dynamic';
@@ -19,8 +19,6 @@ export async function GET(req) {
       return new Response('No group configured', { status: 200 });
     }
 
-    // Auto reset mingguan (dipanggil setiap Senin via cron)
-    await ensureWeekInitialized();
 
     // Gunakan waktu JST (UTC+9) karena server berjalan di UTC
     const nowJst = new Date(Date.now() + 9 * 60 * 60 * 1000);
