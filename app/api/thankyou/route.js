@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 // Import quotes dari file lokal (di-push ke git, bisa diedit bebas)
 const require = createRequire(import.meta.url);
 const quotesData = require('../../../data/quotes.json');
-const kehidupanQuotes = quotesData.kehidupanQuotes;
+const kehidupanQuotes = quotesData.choosenQuotes;
 
 // Escape karakter khusus HTML agar tidak merusak parse_mode: 'HTML'
 function escapeHtml(text) {
