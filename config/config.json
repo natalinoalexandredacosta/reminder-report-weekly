@@ -1,6 +1,10 @@
 {
   "group_chat_id": null,
   "admin_ids": [],
+  "members": [
+    { "name": "Maun", "username": "Andrektrepe" },
+    { "name": "Mana", "username": "Joaninha_Piedade" }
+  ],
   "deadline": {
     "day": "Monday",
     "time": "17:00",
