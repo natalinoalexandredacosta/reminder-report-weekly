@@ -1,6 +1,6 @@
 import { bot } from '../../../lib/bot.js';
 import { getConfig } from '../../../lib/config.js';
-import { getGroupId, getMembers } from '../../../lib/store.js';
+import { getGroupId } from '../../../lib/store.js';
 import { createRequire } from 'module';
 
 export const dynamic = 'force-dynamic';
@@ -26,14 +26,6 @@ export async function GET(req) {
     const config = getConfig();
     const teams = config.teams || [];
 
-    // Ambil members dari KV store (auto-captured) sebagai prioritas,
-    // fallback ke config.members jika KV belum ada data
-    const kvMembers = await getMembers();
-    const configMembers = config.members || [];
-    const rawMembers = kvMembers.length > 0 ? kvMembers : configMembers;
-    // Hanya tag anggota yang punya username Telegram
-    const members = rawMembers.filter(m => m.username);
-
     // Susun daftar semua tim (HTML format)
     const teamLines = [];
     let currentDiv = null;
@@ -44,12 +36,6 @@ export async function GET(req) {
       }
       teamLines.push(`🙏 ${escapeHtml(t.name)}`);
     }
-
-    // Susun mention semua anggota grup (@username)
-    // Telegram tidak render @mention dalam HTML parse_mode, jadi kirim sebagai plain text terpisah
-    const mentionLine = members.length > 0
-      ? members.map(m => `@${m.username}`).join(' ')
-      : '';
 
     // Waktu JST (UTC+9)
     const nowJst = new Date(Date.now() + 9 * 60 * 60 * 1000);
@@ -79,19 +65,13 @@ export async function GET(req) {
           preview: message,
         }, { status: 200 });
       }
-      // Kirim pesan utama (HTML)
       await bot.telegram.sendMessage(groupId, message, { parse_mode: 'HTML' });
-      // Kirim mention semua anggota sebagai plain text terpisah agar notif @mention aktif
-      if (mentionLine) {
-        await bot.telegram.sendMessage(groupId, mentionLine);
-      }
       console.log(`Terima kasih sent to group ${groupId}`);
       return Response.json({
         success: true,
         message: 'Pesan terima kasih berhasil dikirim ke grup!',
         quote: quoteText,
         teams: teams.map(t => t.name),
-        // members_tagged: members.map(m => `@${m.username}`),
       });
     }
 
@@ -101,9 +81,7 @@ export async function GET(req) {
       message: 'Preview pesan berhasil dibuat. Tambahkan ?send=true untuk kirim ke Telegram.',
       quote: quoteText,
       teams: teams.map(t => t.name),
-      members_tagged: members.map(m => `@${m.username}`),
       preview: message,
-      preview_mention: mentionLine,
     });
 
   } catch (err) {
