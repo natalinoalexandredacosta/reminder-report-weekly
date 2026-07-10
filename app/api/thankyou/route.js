@@ -91,7 +91,7 @@ export async function GET(req) {
         message: 'Pesan terima kasih berhasil dikirim ke grup!',
         quote: quoteText,
         teams: teams.map(t => t.name),
-        members_tagged: members.map(m => `@${m.username}`),
+        // members_tagged: members.map(m => `@${m.username}`),
       });
     }
 
